@@ -8,6 +8,7 @@ let state = 1;
 const contracts = {
     'SI1!': 'COMEX:SI 12-24'
 };
+const tickers = Object.keys(contracts)
 
 const addoif = (obj) => {
     const params = {
@@ -27,7 +28,7 @@ const addoif = (obj) => {
     } 
 
     params.['Command'] = (state ? "PLACE" : "CLOSEPOSITION");
-    params['Instrument'] = (contracts[obj.ticker] ? contracts[obj.ticker] : null)
+    params['Instrument'] = (tickers.includes(obj.ticker) ? contracts[obj.ticker] : null)
     params.['Action'] = (state ? obj.order.toUpperCase() : null);
     params.['QTY'] = (state ? parseInt(obj.contracts) : null);
     params.['TIF'] = (state ? "GTC" : null);
