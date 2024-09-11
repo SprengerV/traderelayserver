@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 const acct = process.env.NINJA_ACCOUNT;
@@ -12,27 +13,28 @@ const tickers = Object.keys(contracts)
 
 const addoif = (obj) => {
     const params = {
-        'Command': null,
+        'Command': '',
         'Account': acct,
-        'Instrument': null,
-        'Action': null,
-        'QTY': null,
-        'Order Type': 'MARKET',
-        'Limit Price': null,
-        'Stop Price': null,
-        'TIF': null,
-        'OCO ID': null,
-        'Order ID': null,
-        'Strategy': null,
-        'Strategy ID': null
+        'Instrument': '',
+        'Action': '',
+        'QTY': '',
+        'Order Type': '',
+        'Limit Price': '',
+        'Stop Price': '',
+        'TIF': '',
+        'OCO ID': '',
+        'Order ID': '',
+        'Strategy': '',
+        'Strategy ID': ''
     } 
 
-    params['Command'] = (state ? "PLACE" : "CLOSEPOSITION");
-    params['Instrument'] = (tickers.includes(obj.ticker) ? contracts[obj.ticker] : null)
-    params['Action'] = (state ? obj.order.toUpperCase() : null);
-    params['QTY'] = (state ? parseInt(obj.contracts) : null);
-    params['TIF'] = (state ? "GTC" : null);
-    params['Strategy'] = (state ? strat : null);
+    params['Command'] = (state ? 'PLACE' : 'CLOSEPOSITION');
+    params['Instrument'] = (tickers.includes(obj.ticker) ? contracts[obj.ticker] : '')
+    params['Action'] = (state ? obj.order.toUpperCase() : '');
+    params['Order Type'] = (state ? 'MARKET' : '');
+    params['QTY'] = (state ? parseInt(obj.contracts) : '');
+    params['TIF'] = (state ? 'GTC' : '');
+    params['Strategy'] = (state ? strat : '');
 
     const keys = Object.keys(params);
     let paramstring = "";
