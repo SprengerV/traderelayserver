@@ -5,6 +5,8 @@ require('dotenv').config();
 const acct = process.env.NINJA_ACCOUNT;
 const strat = process.env.ATM_STRAT;
 const dir = process.env.NINJA_DIRECTORY;
+const delay = process.env.DELAY;
+const win = process.env.WINDOW;
 let state = 1;
 const contracts = {
     'SI1!': 'COMEX:SI 12-24'
@@ -48,10 +50,14 @@ const addoif = (obj) => {
             return null
         }
         const { length } = files;
-        fs.writeFile(path.join(dir, `OIF${length}.txt`), paramstring, () => {
-            console.log(`${dir}OIF${length}.txt written`);
-            state = length % 2;
-        });
+        const rand = 1000 * delay + 1000 * win * Math.random();
+        console.log(`RANDOMIZER: ${ rand / 1000 } seconds`)
+        setTimeout(() => {
+            fs.writeFile(path.join(dir, `OIF${length}.txt`), paramstring, () => {
+                console.log(`${dir}OIF${length}.txt written`);
+                state = length % 2;
+            });
+        }, rand);
     });
 };
 
