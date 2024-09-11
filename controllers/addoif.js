@@ -1,5 +1,5 @@
 const fs = require('fs');
-require('dotenv').configure();
+require('dotenv').config();
 
 const acct = process.env.NINJA_ACCOUNT;
 const strat = process.env.ATM_STRAT;
@@ -27,12 +27,12 @@ const addoif = (obj) => {
         'Strategy ID': null
     } 
 
-    params.['Command'] = (state ? "PLACE" : "CLOSEPOSITION");
+    params['Command'] = (state ? "PLACE" : "CLOSEPOSITION");
     params['Instrument'] = (tickers.includes(obj.ticker) ? contracts[obj.ticker] : null)
-    params.['Action'] = (state ? obj.order.toUpperCase() : null);
-    params.['QTY'] = (state ? parseInt(obj.contracts) : null);
-    params.['TIF'] = (state ? "GTC" : null);
-    params.['Strategy'] = (state ? strat : null);
+    params['Action'] = (state ? obj.order.toUpperCase() : null);
+    params['QTY'] = (state ? parseInt(obj.contracts) : null);
+    params['TIF'] = (state ? "GTC" : null);
+    params['Strategy'] = (state ? strat : null);
 
     const keys = Object.keys(params);
     let paramstring = "";
