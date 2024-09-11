@@ -1,6 +1,6 @@
 const app = require('express');
 const path = require('path');
-const { addoif } = require(path.join(__dirname, 'controllers', 'addoif.js'))
+const { addoif } = require(path.join(__dirname, '..', 'controllers', 'addoif.js'))
 
 const router = app.Router();
 
