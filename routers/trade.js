@@ -5,8 +5,9 @@ const { addoif } = require(path.join(__dirname, '..', 'controllers', 'addoif.js'
 const router = app.Router();
 
 router.post('/', (req, res, next) => {
-    const json = JSON.parse(res);
-    const data = json.data.data;
+    const { body } = req;
+    const { data } = body;
+    console.log(data);
     addoif(data);
 })
 

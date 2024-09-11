@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const trade = require(path.join(__dirname, 'routers', 'trade.js'))
 require('dotenv').config();
 
@@ -11,6 +12,7 @@ app.get('/', (req, res) => {
     res.send('Mind your business.');
 });
 
+app.use(bodyParser.json());
 app.use('/trade', trade);
 
 app.listen(PORT, () => {
