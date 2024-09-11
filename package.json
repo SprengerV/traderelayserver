@@ -1,0 +1,24 @@
+{
+  "name": "traderelayserver",
+  "version": "1.0.0",
+  "description": "Receives POST requests from TradingView and creates OIFs for NinjaTrader.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SprengerV/traderelayserver.git"
+  },
+  "keywords": [
+    "automated",
+    "trading",
+    "server"
+  ],
+  "author": "Brendan Francis",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/SprengerV/traderelayserver/issues"
+  },
+  "homepage": "https://github.com/SprengerV/traderelayserver#readme"
+}
