@@ -47,9 +47,10 @@ const addoif = (obj) => {
             console.log(err);
             return null
         }
-        fs.writeFile(path.join(dir, `OIF${files.length}.txt`), paramstring, () => {
-            console.log(`${dir}OIF${files.length}.txt written`);
-            state = files.length % 2;
+        const { length } = files;
+        fs.writeFile(path.join(dir, `OIF${length}.txt`), paramstring, () => {
+            console.log(`${dir}OIF${length}.txt written`);
+            state = length % 2;
         });
     });
 };
