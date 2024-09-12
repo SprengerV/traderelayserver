@@ -11,9 +11,9 @@ const contracts = {
     'SI1!': 'COMEX:SI 12-24'
 };
 const tickers = Object.keys(contracts)
-const state = obj.position_size;
 
 const addoif = (obj) => {
+    const state = obj.position_size;
     const params = {
         'Command': '',
         'Account': acct,
