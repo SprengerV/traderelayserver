@@ -7,11 +7,11 @@ const strat = process.env.ATM_STRAT;
 const dir = process.env.NINJA_DIRECTORY;
 const delay = process.env.DELAY;
 const win = process.env.WINDOW;
-let state = 1;
 const contracts = {
     'SI1!': 'COMEX:SI 12-24'
 };
 const tickers = Object.keys(contracts)
+const state = obj.position_size;
 
 const addoif = (obj) => {
     const params = {
@@ -55,7 +55,6 @@ const addoif = (obj) => {
         setTimeout(() => {
             fs.writeFile(path.join(dir, `OIF${length}.txt`), paramstring, () => {
                 console.log(`${dir}OIF${length}.txt written`);
-                state = length % 2;
             });
         }, rand);
     });
