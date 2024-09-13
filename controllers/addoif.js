@@ -3,7 +3,6 @@ const path = require('path');
 require('dotenv').config();
 
 const acct = process.env.NINJA_ACCOUNT;
-const strat = process.env.ATM_STRAT;
 const dir = process.env.NINJA_DIRECTORY;
 const delay = process.env.DELAY;
 const win = process.env.WINDOW;
@@ -36,7 +35,7 @@ const addoif = (obj) => {
     params['Order Type'] = (state ? 'MARKET' : '');
     params['QTY'] = (state ? parseInt(obj.contracts) : '');
     params['TIF'] = (state ? 'GTC' : '');
-    params['Strategy'] = (state ? strat : '');
+    params['Strategy'] = (state ? obj.atm : '');
 
     const keys = Object.keys(params);
     let paramstring = "";
@@ -53,7 +52,7 @@ const addoif = (obj) => {
         const rand = 1000 * delay + 1000 * win * Math.random();
         console.log(`RANDOMIZER: ${ rand / 1000 } seconds`)
         setTimeout(() => {
-            fs.writeFile(path.join(dir, `OIF${length}.txt`), paramstring, () => {
+            fs.writeFile(path.join(dir, `oif${length}.txt`), paramstring, () => {
                 console.log(`${dir}OIF${length}.txt written`);
             });
         }, rand);
