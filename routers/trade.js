@@ -6,9 +6,9 @@ const router = app.Router();
 
 router.post('/', (req, res, next) => {
     const { body } = req;
-    const { data } = body;
-    console.log(data);
-    addoif(data);
+    const { data, strategy } = body;
+    console.log(`data: ${data}\nstrategy: ${strategy}`);
+    addoif(data, strategy);
 })
 
 module.exports = router;

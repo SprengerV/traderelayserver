@@ -11,11 +11,11 @@ const contracts = {
 };
 const tickers = Object.keys(contracts)
 
-const addoif = (obj) => {
+const addoif = (obj, strat) => {
     const state = parseInt(obj.position_size);
     const params = {
         'Command': '',
-        'Account': acct,
+        'Account': '',
         'Instrument': '',
         'Action': '',
         'QTY': '',
@@ -30,6 +30,7 @@ const addoif = (obj) => {
     } 
 
     params['Command'] = (state ? 'PLACE' : 'CLOSEPOSITION');
+    params['Account'] = strat.account
     params['Instrument'] = (tickers.includes(obj.ticker) ? contracts[obj.ticker] : '')
     params['Action'] = (state ? obj.order.toUpperCase() : '');
     params['Order Type'] = (state ? 'MARKET' : '');
