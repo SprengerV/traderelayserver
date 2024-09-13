@@ -49,7 +49,7 @@ const addoif = (obj) => {
             return null
         }
         const { length } = files;
-        const rand = 1000 * delay + 1000 * win * Math.random();
+        const rand = (state ? (1000 * delay + 1000 * win * Math.random()) : 0);
         console.log(`RANDOMIZER: ${ rand / 1000 } seconds`)
         setTimeout(() => {
             fs.writeFile(path.join(dir, `oif${length}.txt`), paramstring, () => {
