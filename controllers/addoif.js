@@ -54,7 +54,7 @@ const addoif = (obj, strat) => {
         console.log(`RANDOMIZER: ${ rand / 1000 } seconds`)
         setTimeout(() => {
             fs.writeFile(path.join(dir, `oif${length}.txt`), paramstring, () => {
-                console.log(`${dir}OIF${length}.txt written`);
+                console.log(`${dir}oif${length}.txt written`);
             });
         }, rand);
     });
