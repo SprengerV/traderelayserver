@@ -9,6 +9,7 @@ router.post('/', (req, res, next) => {
     const { data, strategy } = body;
     console.log(`data: ${data}\nstrategy: ${strategy}`);
     addoif(data, strategy);
+    res.end("200");
 })
 
 module.exports = router;
