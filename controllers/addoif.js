@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-const acct = process.env.NINJA_ACCOUNT;
 const dir = process.env.NINJA_DIRECTORY;
 const delay = process.env.DELAY;
 const win = process.env.WINDOW;
 const contracts = {
-    'SI1!': 'COMEX:SI 12-24'
+    // 'SI1!': 'COMEX:SI 12-24'
+    'SI1!': 'SI 12-24'
 };
 const tickers = Object.keys(contracts)
 
@@ -40,22 +40,25 @@ const addoif = (obj, strat) => {
 
     const keys = Object.keys(params);
     let paramstring = "";
-    keys.forEach((v, i) => {
-        paramstring += params[v] + ";"
+    keys.forEach((v, i, arr) => {
+        paramstring += params[v] + (i < arr.length -1 ? ";" :"")
     });
 
     fs.readdir(dir,(err, files) => {
         if (err) {
-            console.log(err);
+            console.log(`Error checking NinjaTrader disectory!\n${err}`);
             return null
         }
         const { length } = files;
         const rand = (state ? (1000 * delay + 1000 * win * Math.random()) : 0);
         console.log(`RANDOMIZER: ${ rand / 1000 } seconds`)
         setTimeout(() => {
-            fs.writeFile(path.join(dir, `oif${length}.txt`), paramstring, (err) => {
+            const fname = `oif${length}.txt`
+            const dest = path.join(dir, fname);
+            console.log(`Parameters for new OIF: ${paramstring}`);
+            fs.writeFile(dest, paramstring, (err) => {
                 if (err) console.log(err);
-                else console.log(`${dir}\\oif${length}.txt written`);
+                else console.log(`${dest} written!`);
             });
         }, rand);
     });
