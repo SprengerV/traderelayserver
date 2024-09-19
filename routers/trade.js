@@ -6,9 +6,9 @@ const router = app.Router();
 
 router.post('/', (req, res, next) => {
     const { body } = req;
-    const { data, strategy } = body;
-    console.log(`data: ${data}\nstrategy: ${strategy}`);
-    addoif(data, strategy);
+    const { strategy, data } = body;
+    console.log(`strategy: ${JSON.stringify(strategy, null,2)}\ndata: ${JSON.stringify(data, null, 2)}`);
+    addoif(strategy, data);
     res.end("200");
 })
 

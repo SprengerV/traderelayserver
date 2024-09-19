@@ -11,7 +11,7 @@ const contracts = {
 };
 const tickers = Object.keys(contracts)
 
-const addoif = (obj, strat) => {
+const addoif = (strat, obj) => {
     const state = parseInt(obj.position_size);
     const params = {
         'Command': '',
