@@ -53,7 +53,7 @@ const addoif = ( strat, obj ) => {
         const rand = ( state ? ( 1000 * delay + 1000 * win * Math.random() ) : 0 );
         console.log( `${ time() } RANDOMIZER: ${ rand / 1000 } seconds` )
         setTimeout( () => {
-            const fname = `oif${ length.toString().padStart( ( 6 - length.toString().length ), "0" ) }.txt`
+            const fname = `oif${ length.toString().padStart( 6, "0" ) }.txt`
             const dest = path.join( dir, fname );
             console.log( `${ time() } Parameters for new OIF: ${ paramstring }` );
             fs.writeFile( dest, paramstring, ( err ) => {
