@@ -40,11 +40,11 @@ const addoif = ( strat, obj ) => {
 
     const keys = Object.keys( params );
     let paramstring = "";
-    keys.forEach(( v, i, arr ) => {
+    keys.forEach( ( v, i, arr ) => {
         paramstring += params[ v ] + ( i < arr.length -1 ? ";" :"" )
-    });
+    } );
 
-    fs.readdir(dir,( err, files ) => {
+    fs.readdir( dir,( err, files ) => {
         if ( err ) {
             console.log( `${ time() } Error checking NinjaTrader disectory!\n${ err }` );
             return null
@@ -61,7 +61,7 @@ const addoif = ( strat, obj ) => {
                 else console.log( `${ time() } ${ dest } written!` );
             } );
         }, rand );
-    });
+    } );
 };
 
 module.exports = { addoif };
