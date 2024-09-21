@@ -8,7 +8,7 @@ const router = app.Router();
 router.post('/', (req, res, next) => {
     const { body } = req;
     const { strategy, data } = body;
-    console.log(`${time} strategy: ${JSON.stringify(strategy, null, 2)}\ndata: ${JSON.stringify(data, null, 2)}`);
+    console.log(`${time()} strategy: ${JSON.stringify(strategy, null, 2)}\ndata: ${JSON.stringify(data, null, 2)}`);
     addoif(strategy, data);
     res.end("200");
 })

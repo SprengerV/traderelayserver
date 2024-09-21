@@ -16,5 +16,5 @@ app.use(bodyParser.json());
 app.use('/trade', trade);
 
 app.listen(PORT, () => {
-    console.log(`${time} Server listening on PORT ${PORT} !`)
+    console.log(`${time()} Server listening on PORT ${PORT} !`)
 })
