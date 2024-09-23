@@ -1,7 +1,7 @@
 # OIF Files
 outgoing/*
 # NGROK init script
-ngrok.sh
+scripts/ngrok.sh
 
 # Logs
 logs
