@@ -1,6 +1,6 @@
-const now = new Date();
-
 const time = () => {
+    const now = new Date();
+
     const _time = now.toLocaleString('en-US', {
         // month: '2-digit',
         // day: '2-digit',
