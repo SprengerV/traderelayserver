@@ -3,8 +3,10 @@ const path = require( 'path' );
 
 const sf = path.join( __dirname, '..', 'config', 'state.json' );
 const fresh = {
-    "position_size": 0,
-    "active_atm": null
+    "account": {
+        "position_size": 0,
+        "active_atm": null
+    }
 };
 
 const initState = () => {
