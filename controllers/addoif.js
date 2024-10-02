@@ -32,7 +32,7 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
 
     params[ 'Command' ] = ( state ? 'PLACE' : 'CLOSEPOSITION' );
     params[ 'Account' ] = strat.account
-    params[ 'Instrument' ] = ( tickers.includes( obj.ticker ) ? contracts[ obj.ticker ] : '' )
+    params[ 'Instrument' ] = ( tickers.includes( strat.ticker ) ? contracts[ strat.ticker ] : '' )
     params[ 'Action' ] = ( state ? obj.order.toUpperCase() : '' );
     params[ 'Order Type' ] = ( state ? 'MARKET' : '' );
     params[ 'QTY' ] = ( state ? parseInt( obj.contracts ) : '' );
