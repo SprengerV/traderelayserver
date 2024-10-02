@@ -1,6 +1,7 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
 const time = require( path.join( __dirname, '..', 'util', 'time.js' ) )
+const { getState, setState } = require( path.join( __dirname, '..', 'util', 'state.js' ) )
 require( 'dotenv' ).config();
 
 const dir = process.env.NINJA_DIRECTORY;
@@ -11,7 +12,7 @@ const contracts = {
 };
 const tickers = Object.keys( contracts )
 
-const addoif = ( strat, obj ) => {
+const addoif = ( strat, obj = { position_size: "0" } ) => {
     const state = parseInt( obj.position_size );
     const params = {
         'Command': '',
@@ -57,8 +58,23 @@ const addoif = ( strat, obj ) => {
             const dest = path.join( dir, fname );
             console.log( `${ time() } Parameters for new OIF: ${ paramstring }` );
             fs.writeFile( dest, paramstring, ( err ) => {
-                if ( err ) console.log( err );
+                if ( err ) console.log( `${ time() } ${ err }` );
                 else console.log( `${ time() } ${ dest } written!` );
+
+                const gstate = getState();
+
+                gstate[ strat.account ] = {
+                    "position_size": (
+                        state ? (
+                            obj.order.toUpperCase() == "BUY" ? parseInt( obj.contracts ) : parseInt( obj.contracts ) * -1
+                        ) : 0
+                    ),
+                    "active_atm": (
+                        state ? obj.atm : null
+                    )
+                };
+
+                setState( gstate );
             } );
         }, rand );
     } );

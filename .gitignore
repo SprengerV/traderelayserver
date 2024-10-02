@@ -1,5 +1,5 @@
-# OIF Files
-outgoing/*
+# State file
+config/state.json
 # NGROK init script
 scripts/ngrok.sh
 

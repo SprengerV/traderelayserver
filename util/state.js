@@ -18,8 +18,8 @@ const initState = () => {
 const getState = () => {
     initState();
     const state = JSON.parse( fs.readFileSync( sf ) );
-    if ( state ) state
-    else null
+    if ( state ) return state
+    else return null
 };
 
 const setState = ( obj ) => {
