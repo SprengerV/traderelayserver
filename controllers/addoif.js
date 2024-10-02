@@ -64,11 +64,7 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
                 const gstate = getState();
 
                 gstate[ strat.account ] = {
-                    "position_size": (
-                        state ? (
-                            obj.order.toUpperCase() == "BUY" ? parseInt( obj.contracts ) : parseInt( obj.contracts ) * -1
-                        ) : 0
-                    ),
+                    "position_size": parseInt( obj.position_size ),
                     "active_atm": (
                         state ? obj.atm : null
                     )
