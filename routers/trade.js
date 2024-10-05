@@ -3,7 +3,7 @@ const path = require( 'path' );
 const time = require( path.join( __dirname, '..', 'util', 'time.js' ) )
 const { getState } = require( path.join( __dirname, '..', 'util', 'state.js' ) )
 const { addoif } = require( path.join( __dirname, '..', 'controllers', 'addoif.js' ) )
-const { contracts } = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
+const { contracts_obj } = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
 
 const router = app.Router();
 
@@ -21,7 +21,7 @@ router.post( '/', ( req, res, next ) => {
     if ( accts.includes( strategy.account ) ) {
         acct = state[ strategy.account ];
         const ticks = Object.keys( acct );
-        const ticker = contracts[ strategy.ticker ];
+        const ticker = contracts_obj[ strategy.ticker ];
 
         if ( ticks.includes( ticker ) ) {
             const { position_size: _oldp, active_atm } = acct[ ticker ];
