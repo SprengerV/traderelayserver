@@ -45,11 +45,8 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
         paramstring += params[ v ] + ( i < arr.length -1 ? ";" :"" )
     } );
 
-    fs.readdir( dir,( err, files ) => {
-        if ( err ) {
-            console.log( `${ time() } Error checking NinjaTrader disectory!\n${ err }` );
-            return null
-        }
+    try {
+        const files = fs.readdirSync( dir );
         const { length } = files;
         const rand = ( state ? ( 1000 * delay + 1000 * win * Math.random() ) : 0 );
         console.log( `${ time() } RANDOMIZER: ${ rand / 1000 } seconds` )
@@ -57,13 +54,14 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
             const fname = `oif${ length.toString().padStart( 6, "0" ) }.txt`
             const dest = path.join( dir, fname );
             console.log( `${ time() } Parameters for new OIF: ${ paramstring }` );
-            fs.writeFile( dest, paramstring, ( err ) => {
-                if ( err ) console.log( `${ time() } ${ err }` );
-                else console.log( `${ time() } ${ dest } written!` );
+            
+            try {
+                fs.writeFileSync( dest, paramstring );
+                console.log( `${ time() } ${ dest } written!` );
 
                 const gstate = getState();
 
-                gstate[ strat.account ] = {
+                gstate[ strat.account ][ strat.ticker ] = {
                     "position_size": parseInt( obj.position_size ),
                     "active_atm": (
                         state ? obj.atm : null
@@ -71,9 +69,14 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
                 };
 
                 setState( gstate );
-            } );
+            } catch ( er ) {
+                console.log( `${ time() } ${ er }` );
+            }
         }, rand );
-    } );
+    } catch ( err ) {
+        console.log( `${ time() } Error checking NinjaTrader disectory!\n${ err }` );
+        return null
+    }
 };
 
 module.exports = { addoif };

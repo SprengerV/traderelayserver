@@ -12,8 +12,21 @@ router.post( '/', ( req, res, next ) => {
     let { position_size: _newp, contracts: _contracts } = data;
     const contracts = parseInt( _contracts );
     const newp = parseInt( _newp );
-    const { position_size: _oldp, active_atm } = getState()[ strategy.account ];
-    const oldp = parseInt( _oldp );
+    const state = getState();
+    const accts = Object.keys( state );
+    let acct;
+    let oldp;
+
+    if ( accts.includes( strategy.account ) ) {
+        acct = state[ strategy.account ];
+        const ticks = Object.keys( acct );
+        
+        if ( ticks.includes( strategy.ticker ) ) {
+            const { position_size: _oldp, active_atm } = acct[ strategy.ticker ];
+            oldp = parseInt( _oldp );    
+        } else oldp = 0
+    } else oldp = 0
+
 
     console.log( `${ time() } strategy: ${ JSON.stringify( strategy, null, 2 ) }\ndata: ${ JSON.stringify( data, null, 2 ) }` );
     
@@ -23,7 +36,7 @@ router.post( '/', ( req, res, next ) => {
         data[ "contracts" ] = ( newp > 0 ? newp : ( -1 * newp ) ).toString();
         addoif( strategy, data )
         res.end( "200" );
-    } else {
+    } else  if ( oldp = 0 )
         addoif( strategy, data );
         res.end( "200" );
     };
