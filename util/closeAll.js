@@ -14,12 +14,16 @@ const closeAll = () => {
         const acct = state[ acctk ];
         const ticks = Object.keys( acct );
         for ( j=0; j<ticks.length; j++ ) {
-            let no = {};
-            no.account = accts[ i ]; 
-            no.ticker = ticks[ j ];
-            setTimeout( () => {
-                addoif( no )
-            }, 500);
+            const tick = ticks[ j ];
+
+            if ( acct[ tick ][ position_size ] != 0 ) {
+                let no = {};
+                no.account = accts[ i ]; 
+                no.ticker = tick;
+                setTimeout( () => {
+                    addoif( no )
+                }, 200);
+            }
         };
     };
 };

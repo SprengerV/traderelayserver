@@ -2,14 +2,12 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const time = require( path.join( __dirname, '..', 'util', 'time.js' ) )
 const { getState, setState } = require( path.join( __dirname, '..', 'util', 'state.js' ) )
+const contracts = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
 require( 'dotenv' ).config();
 
 const dir = process.env.NINJA_DIRECTORY;
 const delay = process.env.DELAY;
 const win = process.env.WINDOW;
-const contracts = {
-    'SI1!': 'SI 12-24'
-};
 const tickers = Object.keys( contracts )
 
 const addoif = ( strat, obj = { position_size: "0" } ) => {
@@ -61,7 +59,7 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
 
                 const gstate = getState();
 
-                gstate[ strat.account ][ strat.ticker ] = {
+                gstate[ strat.account ][ contracts[ strat.ticker ] ] = {
                     "position_size": parseInt( obj.position_size ),
                     "active_atm": (
                         state ? obj.atm : null
