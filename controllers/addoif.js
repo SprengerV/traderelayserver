@@ -2,7 +2,7 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const time = require( path.join( __dirname, '..', 'util', 'time.js' ) )
 const { getState, setState } = require( path.join( __dirname, '..', 'util', 'state.js' ) )
-const contracts = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
+const { contracts } = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
 require( 'dotenv' ).config();
 
 const dir = process.env.NINJA_DIRECTORY;
@@ -57,14 +57,16 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
                 fs.writeFileSync( dest, paramstring );
                 console.log( `${ time() } ${ dest } written!` );
 
-                const gstate = getState();
+                let gstate = getState();
+                let ao = {};
 
-                gstate[ strat.account ][ contracts[ strat.ticker ] ] = {
+                ao[ contracts[ strat.ticker ] ] = {
                     "position_size": parseInt( obj.position_size ),
                     "active_atm": (
                         state ? obj.atm : null
                     )
                 };
+                gstate[ strat.account ] = ao;
 
                 setState( gstate );
             } catch ( er ) {

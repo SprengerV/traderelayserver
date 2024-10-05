@@ -2,6 +2,7 @@ const path = require( 'path' );
 const { addoif } = require( path.join( __dirname, '..', 'controllers', 'addoif.js' ) );
 const time = require( path.join( __dirname, 'time.js' ) );
 const { getState } = require( path.join( __dirname, 'state.js' ) );
+const { contracts_inverse } = require( path.join( __dirname, 'contracts.js' ) );
 
 const closeAll = () => {
     const state = getState();
@@ -12,14 +13,17 @@ const closeAll = () => {
     for ( i=0; i<accts.length; i++ ) {
         const acctk = accts[ i ];
         const acct = state[ acctk ];
+        console.log(`ACCOUNT: ${acct}`)
         const ticks = Object.keys( acct );
+        console.log(`TICKS: ${ticks}`)
         for ( j=0; j<ticks.length; j++ ) {
             const tick = ticks[ j ];
 
-            if ( acct[ tick ][ position_size ] != 0 ) {
+            console.log(`TICK: ${tick}`)
+            if ( acct[ tick ][ 'position_size' ] != 0 ) {
                 let no = {};
                 no.account = accts[ i ]; 
-                no.ticker = tick;
+                no.ticker = contracts_inverse[ tick ];
                 setTimeout( () => {
                     addoif( no )
                 }, 200);
