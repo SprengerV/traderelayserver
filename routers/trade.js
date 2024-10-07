@@ -36,7 +36,9 @@ router.post( '/', ( req, res, next ) => {
     console.log( `${ time() } strategy: ${ JSON.stringify( strategy, null, 2 ) }\ndata: ${ JSON.stringify( data, null, 2 ) }` );
     console.log(`${ time() } OLD POSITION: ${ oldp }, NEW POSITION: ${ newp }` );
 
-    if ( ( oldp < 0 && newp > 0 ) || ( oldp > 0 && newp < 0 ) ) {
+    if ( newp == 0 ) {
+        addoif( strategy );
+    } else if ( ( oldp < 0 && newp > 0 ) || ( oldp > 0 && newp < 0 ) ) {
         addoif( strategy );
         data[ "contracts" ] = ( newp > 0 ? newp : ( -1 * newp ) ).toString();
         addoif( strategy, data )
