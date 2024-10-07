@@ -38,6 +38,7 @@ router.post( '/', ( req, res, next ) => {
 
     if ( newp == 0 ) {
         addoif( strategy );
+        res.end( "200" );
     } else if ( ( oldp < 0 && newp > 0 ) || ( oldp > 0 && newp < 0 ) ) {
         addoif( strategy );
         data[ "contracts" ] = ( newp > 0 ? newp : ( -1 * newp ) ).toString();
