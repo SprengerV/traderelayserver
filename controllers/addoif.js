@@ -1,6 +1,6 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
-const time = require( path.join( __dirname, '..', 'util', 'time.js' ) )
+const { time } = require( path.join( __dirname, '..', 'util', 'time.js' ) )
 const { getState, setState } = require( path.join( __dirname, '..', 'util', 'state.js' ) )
 const { contracts } = require( path.join( __dirname, '..', 'util', 'contracts.js' ) );
 require( 'dotenv' ).config();

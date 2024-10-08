@@ -1,6 +1,6 @@
 const path = require( 'path' );
 const { addoif } = require( path.join( __dirname, '..', 'controllers', 'addoif.js' ) );
-const time = require( path.join( __dirname, 'time.js' ) );
+const { time } = require( path.join( __dirname, 'time.js' ) );
 const { getState } = require( path.join( __dirname, 'state.js' ) );
 const { contracts_inverse } = require( path.join( __dirname, 'contracts.js' ) );
 
