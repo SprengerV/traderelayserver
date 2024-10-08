@@ -17,8 +17,6 @@ const closeAll = () => {
 
         for ( j=0; j<ticks.length; j++ ) {
             const tick = ticks[ j ];
-
-            console.log(`TICK: ${tick}`)
             
             if ( acct[ tick ][ 'position_size' ] != 0 ) {
                 let no = {};
