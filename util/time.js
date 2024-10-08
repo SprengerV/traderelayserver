@@ -20,13 +20,13 @@ const currentContract = () => {
     const my = now.toLocaleString( 'en-US', {
         month: '2-digit',
         year: '2-digit'
-    } ).split( '-' );
+    } ).split( '/' );
 
-    const nm = my[ 0 ] + 2;
+    const nm = parseInt( my[ 0 ] ) + 2;
     const yc = nm > 12;
 
     my[ 0 ] = yc ? nm - 12 : nm
-    my[ 1 ] = yc ? my[ 1 ] + 1 : my[ 1 ]
+    my[ 1 ] = yc ? parseInt( my[ 1 ] ) + 1 : my[ 1 ]
 
     return my.join( '-' );
 };

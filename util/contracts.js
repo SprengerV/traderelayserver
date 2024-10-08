@@ -1,5 +1,8 @@
+const path = require( 'path' );
+const { currentContract } = require( path.join( __dirname, 'time.js' ) );
+
 const contracts = {
-    'SI1!': 'SI 12-24'
+    'SI1!': 'SI ' + currentContract()
 };
 
 const ks = Object.keys( contracts );

@@ -1,6 +1,6 @@
 const express = require( 'express' );
 const path = require( 'path' );
-const time = require( path.join( __dirname, 'util', 'time.js' ) );
+const { time } = require( path.join( __dirname, 'util', 'time.js' ) );
 const closeAll = require( path.join( __dirname, 'util', 'closeAll.js' ) );
 const bodyParser = require( 'body-parser' );
 const trade = require( path.join( __dirname, 'routers', 'trade.js' ) );
