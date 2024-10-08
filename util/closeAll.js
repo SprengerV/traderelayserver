@@ -13,13 +13,13 @@ const closeAll = () => {
     for ( i=0; i<accts.length; i++ ) {
         const acctk = accts[ i ];
         const acct = state[ acctk ];
-        console.log(`ACCOUNT: ${acct}`)
         const ticks = Object.keys( acct );
-        console.log(`TICKS: ${ticks}`)
+
         for ( j=0; j<ticks.length; j++ ) {
             const tick = ticks[ j ];
 
             console.log(`TICK: ${tick}`)
+            
             if ( acct[ tick ][ 'position_size' ] != 0 ) {
                 let no = {};
                 no.account = accts[ i ]; 
