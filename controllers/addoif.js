@@ -43,14 +43,16 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
         paramstring += params[ v ] + ( i < arr.length -1 ? ";" :"" )
     } );
 
-    try {
-        const files = fs.readdirSync( dir );
-        const { length } = files;
-        const rand = ( state ? ( 1000 * delay + 1000 * win * Math.random() ) : 0 );
-        console.log( `${ time() } RANDOMIZER: ${ rand / 1000 } seconds` )
-        setTimeout( () => {
+    const rand = ( state ? ( 1000 * delay + 1000 * win * Math.random() ) : 0 );
+    console.log( `${ time() } RANDOMIZER: ${ rand / 1000 } seconds` )
+
+    setTimeout( () => {
+        try {
+            const files = fs.readdirSync( dir );
+            const { length } = files;
             const fname = `oif${ length.toString().padStart( 6, "0" ) }.txt`
             const dest = path.join( dir, fname );
+            
             console.log( `${ time() } Parameters for new OIF: ${ paramstring }` );
             
             try {
@@ -72,11 +74,11 @@ const addoif = ( strat, obj = { position_size: "0" } ) => {
             } catch ( er ) {
                 console.log( `${ time() } ${ er }` );
             }
-        }, rand );
-    } catch ( err ) {
-        console.log( `${ time() } Error checking NinjaTrader disectory!\n${ err }` );
-        return null
-    }
+        } catch ( err ) {
+            console.log( `${ time() } Error checking NinjaTrader disectory!\n${ err }` );
+            return null
+        }
+    }, rand );
 };
 
 module.exports = { addoif };
