@@ -23,10 +23,10 @@ const currentContract = () => {
     } ).split( '/' );
 
     const nm = parseInt( my[ 0 ] ) + 2;
-    const yc = nm > 12;
+    const yc = nm > 15;
 
-    my[ 0 ] = yc ? nm - 12 : nm
-    my[ 1 ] = yc ? parseInt( my[ 1 ] ) + 1 : my[ 1 ]
+    my[ 0 ] = yc ? nm - 12 : ( nm > 12 ? 12 : nm );
+    my[ 1 ] = yc ? parseInt( my[ 1 ] ) + 1 : my[ 1 ];
 
     return my.join( '-' );
 };
