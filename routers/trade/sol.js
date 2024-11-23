@@ -7,8 +7,9 @@ const { contracts: contracts_obj } = require( path.join( __dirname, '..', '..', 
 
 const router = app.Router()
 
-router.post('/', ((req, res, next) => {
-
-}))
+router.post( '/', ( ( req, res, next ) => {
+    const { body } = req
+    const { data, strategy } = body
+} ) )
 
 module.exports = router
